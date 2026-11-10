@@ -1,5 +1,5 @@
-// Scroll karne par cards aur sections smoothly dikhenge
-const items = document.querySelectorAll(".card, #services h2, #booking h2, #booking p");
+// Cards and headings appear smoothly while scrolling
+const items = document.querySelectorAll(".card, #services h2, #booking h2");
 
 items.forEach((item) => item.classList.add("reveal"));
 
@@ -15,19 +15,27 @@ items.forEach((item, index) => {
   item.style.transitionDelay = (index % 4) * 0.12 + "s";
   observer.observe(item);
 });
+
 // ---------- BOOKING SYSTEM ----------
 const form = document.getElementById("bookingForm");
 const tableBody = document.getElementById("tableBody");
 const emptyMsg = document.getElementById("emptyMsg");
 
-// Purani bookings browser ki memory se nikalo
+// Load saved bookings from browser memory
 let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-// Aaj se pehle ki date select na ho
+// Do not allow past dates
 document.getElementById("date").min = new Date().toISOString().split("T")[0];
 
 function saveBookings() {
   localStorage.setItem("bookings", JSON.stringify(bookings));
+}
+
+// Makes text safe to show on the page
+function safe(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 function showBookings() {
@@ -50,10 +58,9 @@ function showBookings() {
           <option ${b.status === "Completed" ? "selected" : ""}>Completed</option>
         </select>
       </td>
-        <td><button class="bill-btn" data-id="${b.id}">Bill</button></td>
+      <td><button class="bill-btn" data-id="${b.id}">Bill</button></td>
       <td><button class="delete-btn" data-id="${b.id}">X</button></td>
     `;
-    // Text safe tareeke se daalo
     row.children[1].textContent = b.name;
     row.children[2].textContent = b.phone;
     row.children[3].textContent = b.bikeModel + " (" + b.bikeNumber + ")";
@@ -82,10 +89,10 @@ form.addEventListener("submit", function (e) {
   saveBookings();
   showBookings();
   form.reset();
-  alert("Booking ho gayi! ✅");
+  alert("Booking confirmed! ✅");
 });
 
-// Status badalna aur delete karna
+// Change status and delete
 tableBody.addEventListener("change", function (e) {
   if (e.target.classList.contains("status-select")) {
     const id = Number(e.target.dataset.id);
@@ -106,16 +113,10 @@ tableBody.addEventListener("click", function (e) {
 });
 
 showBookings();
+
 // ---------- BILL ----------
 const billModal = document.getElementById("billModal");
 const billBody = document.getElementById("billBody");
-
-// Naam jaise text ko safe banane ke liye
-function safe(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
 
 tableBody.addEventListener("click", function (e) {
   if (e.target.classList.contains("bill-btn")) {
@@ -141,7 +142,7 @@ tableBody.addEventListener("click", function (e) {
         <tr><td>GST (18%)</td><td>₹${gst}</td></tr>
         <tr class="bill-total"><td>Total</td><td>₹${total}</td></tr>
       </table>
-      <p class="thanks">Dhanyavaad! Fir milenge 🙏</p>
+      <p class="thanks">Thank you! Visit again 🙏</p>
     `;
     billModal.classList.add("open");
   }
@@ -163,14 +164,14 @@ function showHistory() {
   const text = historySearch.value.trim().toUpperCase();
 
   if (text === "") {
-    historyResult.innerHTML = "<p id='emptyMsg'>Pehle bike number likho.</p>";
+    historyResult.innerHTML = "<p id='emptyMsg'>Please enter a bike number first.</p>";
     return;
   }
 
   const found = bookings.filter((b) => b.bikeNumber.includes(text));
 
   if (found.length === 0) {
-    historyResult.innerHTML = "<p id='emptyMsg'>Is bike ki koi service nahi mili.</p>";
+    historyResult.innerHTML = "<p id='emptyMsg'>No service found for this bike.</p>";
     return;
   }
 
@@ -196,9 +197,22 @@ function showHistory() {
       </thead>
       <tbody>${rows}</tbody>
     </table>
-    <p class="history-total">Total Services: ${found.length} &nbsp;|&nbsp; Total Kharcha: ₹${totalSpent}</p>
+    <p class="history-total">Total Services: ${found.length} &nbsp;|&nbsp; Total Spent: ₹${totalSpent}</p>
   `;
 }
 
 document.getElementById("historyBtn").addEventListener("click", showHistory);
 historySearch.addEventListener("keyup", showHistory);
+
+// ---------- DEMO DATA ----------
+document.getElementById("demoBtn").addEventListener("click", function () {
+  const now = Date.now();
+  const demo = [
+    { id: now + 1, name: "Rahul Sharma", phone: "9876543210", bikeModel: "Splendor", bikeNumber: "UP85 AB 1234", service: "Oil Change", price: 400, date: "2026-11-15", status: "Completed" },
+    { id: now + 2, name: "Amit Verma", phone: "9123456780", bikeModel: "Pulsar 150", bikeNumber: "UP85 CD 5678", service: "Full Service", price: 900, date: "2026-11-16", status: "In Progress" },
+    { id: now + 3, name: "Priya Singh", phone: "9988776655", bikeModel: "Activa", bikeNumber: "UP85 EF 9012", service: "Bike Wash", price: 150, date: "2026-11-17", status: "Pending" }
+  ];
+  bookings = bookings.concat(demo);
+  saveBookings();
+  showBookings();
+});

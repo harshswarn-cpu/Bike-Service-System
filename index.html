@@ -14,18 +14,18 @@
       <a href="#home">Home</a>
       <a href="#services">Services</a>
       <a href="#booking">Book Service</a>
-            <a href="#history">History</a>
+      <a href="#history">History</a>
     </nav>
   </header>
 
   <section id="home" class="hero">
-    <h2>Apni Bike Ki Service Ab Digital</h2>
-    <p>Booking karo, status dekho, aur bill paao, sab ek jagah.</p>
+    <h2>Your Bike Service, Now Digital</h2>
+    <p>Book a service, track its status and get your bill, all in one place.</p>
     <a href="#booking" class="btn">Book Service Now</a>
   </section>
 
   <section id="services">
-    <h2>Hamari Services</h2>
+    <h2>Our Services</h2>
     <div class="cards">
       <div class="card"><h3>Oil Change</h3><p>₹400</p></div>
       <div class="card"><h3>Bike Wash</h3><p>₹150</p></div>
@@ -34,17 +34,17 @@
     </div>
   </section>
 
-   <section id="booking">
-    <h2>Service Book Karo</h2>
+  <section id="booking">
+    <h2>Book a Service</h2>
 
     <form id="bookingForm" class="form-box">
-      <input type="text" id="name" placeholder="Customer ka naam" required>
-      <input type="tel" id="phone" placeholder="Phone number (10 digit)" pattern="[0-9]{10}" required>
-      <input type="text" id="bikeModel" placeholder="Bike ka model (jaise Splendor)" required>
-      <input type="text" id="bikeNumber" placeholder="Bike number (jaise UP85 AB 1234)" required>
+      <input type="text" id="name" placeholder="Customer name" required>
+      <input type="tel" id="phone" placeholder="Phone number (10 digits)" pattern="[0-9]{10}" required>
+      <input type="text" id="bikeModel" placeholder="Bike model (e.g. Splendor)" required>
+      <input type="text" id="bikeNumber" placeholder="Bike number (e.g. UP85 AB 1234)" required>
 
       <select id="service" required>
-        <option value="">-- Service chuno --</option>
+        <option value="">-- Select a service --</option>
         <option value="Oil Change|400">Oil Change - ₹400</option>
         <option value="Bike Wash|150">Bike Wash - ₹150</option>
         <option value="Brake Repair|300">Brake Repair - ₹300</option>
@@ -52,12 +52,13 @@
       </select>
 
       <input type="date" id="date" required>
-      <button type="submit" class="btn-submit">Book Karo</button>
+      <button type="submit" class="btn-submit">Book Now</button>
     </form>
   </section>
 
   <section id="bookings-list">
-    <h2>Saari Bookings</h2>
+    <h2>All Bookings</h2>
+    <button id="demoBtn" class="btn-submit" style="max-width:260px;margin-top:16px;">Load Demo Data</button>
     <div class="table-wrap">
       <table>
         <thead>
@@ -75,14 +76,15 @@
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
-      <p id="emptyMsg">Abhi koi booking nahi hai.</p>
+      <p id="emptyMsg">No bookings yet.</p>
     </div>
   </section>
+
   <section id="history">
     <h2>Service History</h2>
     <div class="form-box">
-      <input type="text" id="historySearch" placeholder="Bike number likho (jaise UP85 AB 1234)">
-      <button id="historyBtn" class="btn-submit">Search Karo</button>
+      <input type="text" id="historySearch" placeholder="Enter bike number (e.g. UP85 AB 1234)">
+      <button id="historyBtn" class="btn-submit">Search</button>
     </div>
     <div id="historyResult" class="table-wrap"></div>
   </section>
@@ -91,11 +93,12 @@
     <div class="modal-content" id="billContent">
       <div id="billBody"></div>
       <div class="modal-actions">
-        <button id="printBill" class="btn-submit">Print Karo</button>
-        <button id="closeBill" class="delete-btn">Band Karo</button>
+        <button id="printBill" class="btn-submit">Print</button>
+        <button id="closeBill" class="delete-btn">Close</button>
       </div>
     </div>
   </div>
+
   <footer>
     <p>© 2026 Bike Services Management System</p>
   </footer>
