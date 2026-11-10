@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Services Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🏍️ Bike Services Management System</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book Service</a>
+            <a href="#history">History</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h2>Apni Bike Ki Service Ab Digital</h2>
+    <p>Booking karo, status dekho, aur bill paao, sab ek jagah.</p>
+    <a href="#booking" class="btn">Book Service Now</a>
+  </section>
+
+  <section id="services">
+    <h2>Hamari Services</h2>
+    <div class="cards">
+      <div class="card"><h3>Oil Change</h3><p>₹400</p></div>
+      <div class="card"><h3>Bike Wash</h3><p>₹150</p></div>
+      <div class="card"><h3>Brake Repair</h3><p>₹300</p></div>
+      <div class="card"><h3>Full Service</h3><p>₹900</p></div>
+    </div>
+  </section>
+
+   <section id="booking">
+    <h2>Service Book Karo</h2>
+
+    <form id="bookingForm" class="form-box">
+      <input type="text" id="name" placeholder="Customer ka naam" required>
+      <input type="tel" id="phone" placeholder="Phone number (10 digit)" pattern="[0-9]{10}" required>
+      <input type="text" id="bikeModel" placeholder="Bike ka model (jaise Splendor)" required>
+      <input type="text" id="bikeNumber" placeholder="Bike number (jaise UP85 AB 1234)" required>
+
+      <select id="service" required>
+        <option value="">-- Service chuno --</option>
+        <option value="Oil Change|400">Oil Change - ₹400</option>
+        <option value="Bike Wash|150">Bike Wash - ₹150</option>
+        <option value="Brake Repair|300">Brake Repair - ₹300</option>
+        <option value="Full Service|900">Full Service - ₹900</option>
+      </select>
+
+      <input type="date" id="date" required>
+      <button type="submit" class="btn-submit">Book Karo</button>
+    </form>
+  </section>
+
+  <section id="bookings-list">
+    <h2>Saari Bookings</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Bike</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Bill</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <p id="emptyMsg">Abhi koi booking nahi hai.</p>
+    </div>
+  </section>
+  <section id="history">
+    <h2>Service History</h2>
+    <div class="form-box">
+      <input type="text" id="historySearch" placeholder="Bike number likho (jaise UP85 AB 1234)">
+      <button id="historyBtn" class="btn-submit">Search Karo</button>
+    </div>
+    <div id="historyResult" class="table-wrap"></div>
+  </section>
+
+  <div id="billModal" class="modal">
+    <div class="modal-content" id="billContent">
+      <div id="billBody"></div>
+      <div class="modal-actions">
+        <button id="printBill" class="btn-submit">Print Karo</button>
+        <button id="closeBill" class="delete-btn">Band Karo</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2026 Bike Services Management System</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.8s ease;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+nav a {
+  position: relative;
+  color: #e2e8f0;
+  text-decoration: none;
+  margin-left: 28px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #f59e0b;
+  transition: width 0.3s;
+}
+
+nav a:hover {
+  color: #f59e0b;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  text-align: center;
+  padding: 110px 20px 90px;
+  color: white;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a, #f59e0b, #0f172a);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  overflow: hidden;
+}
+
+.hero h2 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  animation: fadeUp 1s ease both;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 34px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.45);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeUp 1s ease 0.6s both, pulse 2.2s ease-in-out 2s infinite;
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 28px rgba(245, 158, 11, 0.6);
+}
+
+/* Bike jo left-right chalti hai */
+.hero::after {
+  content: "🏍️";
+  display: block;
+  font-size: 64px;
+  margin-top: 40px;
+  animation: ride 5s ease-in-out infinite alternate;
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #f59e0b;
+  border-radius: 4px;
+  margin: 12px auto 0;
+}
+
+.hero h2::after {
+  display: none;
+}
+
+/* ---------- SERVICE CARDS ---------- */
+.cards {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  padding: 32px 24px;
+  width: 220px;
+  border-radius: 16px;
+  border-top: 5px solid #f59e0b;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+/* ---------- BOOKING ---------- */
+#booking {
+  background: #e2e8f0;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #0f172a;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 22px;
+  font-size: 14px;
+}
+
+/* ---------- SCROLL REVEAL ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 8px 20px rgba(245, 158, 11, 0.45); }
+  50%      { box-shadow: 0 8px 35px rgba(245, 158, 11, 0.9); }
+}
+
+@keyframes ride {
+  from { transform: translateX(-120px); }
+  to   { transform: translateX(120px); }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+  header { padding: 14px 18px; }
+  nav a { margin: 10px 14px 0 0; }
+  .hero h2 { font-size: 30px; }
+}
+/* ---------- BOOKING FORM ---------- */
+.form-box {
+  max-width: 520px;
+  margin: 30px auto 0;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-box input,
+.form-box select {
+  padding: 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-box input:focus,
+.form-box select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+.btn-submit {
+  padding: 14px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.btn-submit:hover {
+  background: #d97706;
+  transform: translateY(-3px);
+}
+
+/* ---------- BOOKINGS TABLE ---------- */
+.table-wrap {
+  max-width: 1000px;
+  margin: 30px auto 0;
+  overflow-x: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #0f172a;
+  color: white;
+  padding: 14px;
+  font-size: 14px;
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+tbody tr {
+  animation: fadeUp 0.5s ease both;
+}
+
+tbody tr:hover {
+  background: #fef3c7;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-Pending { background: #fee2e2; color: #b91c1c; }
+.status-InProgress { background: #fef3c7; color: #b45309; }
+.status-Completed { background: #dcfce7; color: #15803d; }
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+#emptyMsg {
+  padding: 20px;
+  color: #64748b;
+}
+/* ---------- BILL BUTTON ---------- */
+.bill-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.bill-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ---------- BILL POPUP ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: left;
+  transform: scale(0.8);
+  transition: transform 0.3s;
+}
+
+.modal.open .modal-content {
+  transform: scale(1);
+}
+
+.modal-content h2 {
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal-content h2::after {
+  display: none;
+}
+
+.modal-content p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.modal-content hr {
+  margin: 14px 0;
+  border: none;
+  border-top: 2px dashed #cbd5e1;
+}
+
+.bill-no {
+  text-align: center;
+  color: #64748b;
+}
+
+.bill-table {
+  width: 100%;
+}
+
+.bill-table td {
+  padding: 8px 0;
+  border: none;
+}
+
+.bill-table td:last-child {
+  text-align: right;
+}
+
+.bill-total td {
+  font-size: 18px;
+  font-weight: 700;
+  border-top: 2px solid #0f172a;
+}
+
+.thanks {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* ---------- HISTORY ---------- */
+#history {
+  background: #e2e8f0;
+}
+
+#history .table-wrap {
+  background: transparent;
+  box-shadow: none;
+}
+
+#historyResult table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.history-total {
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ---------- PRINT: sirf bill print hoga ---------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #billContent,
+  #billContent * {
+    visibility: visible;
+  }
+  #billContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: none;
+  }
+  .modal-actions {
+    display: none;
+  }
+}
